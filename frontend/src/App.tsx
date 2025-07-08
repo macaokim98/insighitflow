@@ -4,11 +4,9 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import { store } from './store';
 import Layout from './components/common/Layout';
-import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Customers from './pages/Customers';
 import CustomerDetail from './pages/CustomerDetail';
-import ProtectedRoute from './components/auth/ProtectedRoute';
 
 const theme = createTheme({
   palette: {
@@ -28,15 +26,7 @@ function App() {
         <CssBaseline />
         <Router>
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <Layout />
-                </ProtectedRoute>
-              }
-            >
+            <Route path="/" element={<Layout />}>
               <Route index element={<Navigate to="/dashboard" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="customers" element={<Customers />} />

@@ -54,11 +54,13 @@ const Login: React.FC = () => {
 
   const onSubmit = async (data: LoginFormData) => {
     try {
+      console.log('🔐 Login attempt:', data);
       const result = await login(data).unwrap();
+      console.log('✅ Login success:', result);
       dispatch(setCredentials(result));
       navigate('/dashboard');
     } catch (err) {
-      console.error('Login failed:', err);
+      console.error('❌ Login failed:', err);
     }
   };
 

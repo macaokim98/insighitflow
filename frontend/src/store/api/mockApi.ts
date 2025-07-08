@@ -7,19 +7,45 @@ export const mockApiResponse = async (url: string, method: string = 'GET', body?
   
   // Mock login
   if (url.includes('/auth/login') && method === 'POST') {
+    console.log('🎭 Mock login called with:', body);
+    // Check credentials (accept any for demo)
+    if (body && body.email && body.password) {
+      return {
+        ok: true,
+        json: async () => ({
+          user: {
+            id: '1',
+            email: body.email,
+            firstName: 'Admin',
+            lastName: 'User',
+            role: 'ADMIN',
+          },
+          accessToken: 'mock-jwt-token',
+          refreshToken: 'mock-refresh-token',
+          expiresIn: 86400
+        })
+      };
+    } else {
+      return {
+        ok: false,
+        status: 401,
+        json: async () => ({
+          message: 'Invalid credentials'
+        })
+      };
+    }
+  }
+  
+  // Mock profile
+  if (url.includes('/auth/profile') && method === 'GET') {
     return {
       ok: true,
       json: async () => ({
-        user: {
-          id: '1',
-          email: 'admin@insightflow.com',
-          firstName: 'Admin',
-          lastName: 'User',
-          role: 'ADMIN',
-        },
-        accessToken: 'mock-jwt-token',
-        refreshToken: 'mock-refresh-token',
-        expiresIn: 86400
+        id: '1',
+        email: 'admin@insightflow.com',
+        firstName: 'Admin',
+        lastName: 'User',
+        role: 'ADMIN',
       })
     };
   }
