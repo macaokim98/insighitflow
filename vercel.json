@@ -1,12 +1,13 @@
 {
-  "buildCommand": "cd frontend && npm install --production=false && npm run build",
+  "buildCommand": "cd frontend && npm install --ignore-scripts && npm run build",
   "outputDirectory": "frontend/dist",
-  "installCommand": "echo 'Skipping workspace install'",
+  "installCommand": "echo 'Skipping workspace install - using direct frontend build'",
   "framework": "vite",
   "env": {
     "CI": "true",
     "NODE_ENV": "production",
-    "SKIP_PREPARE": "true"
+    "SKIP_PREPARE": "true",
+    "HUSKY": "0"
   },
   "rewrites": [
     {

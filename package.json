@@ -19,8 +19,7 @@
     "lint": "eslint . --ext .ts,.tsx",
     "docker:build": "docker-compose build",
     "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down",
-    "prepare": "if [ \"$CI\" = \"true\" ]; then echo 'Skipping husky in CI'; else husky install; fi"
+    "docker:down": "docker-compose down"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
