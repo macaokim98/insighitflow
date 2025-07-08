@@ -20,7 +20,7 @@
     "docker:build": "docker-compose build",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "prepare": "is-ci || husky install"
+    "prepare": "if [ \"$CI\" = \"true\" ]; then echo 'Skipping husky in CI'; else husky install; fi"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
